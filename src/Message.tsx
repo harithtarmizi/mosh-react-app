@@ -1,0 +1,4 @@
+// Pascal casing
+function Message() {
+
+}
