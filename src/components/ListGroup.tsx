@@ -1,4 +1,4 @@
-import { MouseEvent } from "react";
+import { useState } from "react";
 
 function ListGroup() {
   let items = ["New York", "San Francisco", "Tokyo", "London", "Paris"];
@@ -7,7 +7,7 @@ function ListGroup() {
   // in JSX, we don't have for loop
   // remember, inside JSX, we can't use if statement, unless have curly brackets
 
-  // () => {} : function withiut parameters
+  // () => {} : function without parameters
 
   // how to avoid null >>> {items.length === 0 ? <p>No item found</p> : null}
   // ex: {items.length === 0 && <p>No item found</p>}
@@ -15,20 +15,29 @@ function ListGroup() {
   // if result is false && 'Mosh', i will return false
 
   // Event handler
-  const handleClick = (e: MouseEvent) => console.log(e);
+  // const handleClick = (e: MouseEvent) => console.log(e);
+
+  // hook
+  // selectedIndex = variable state
+  // setSelectedIndex = function
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
   return (
     <>
       <h1>List</h1>
       {items.length === 0 && <p>No item found</p>}
       <ul className="list-group">
-        {items.map((item) => (
+        {items.map((item, index) => (
           <li
             key={item}
-            className="list-group-item"
+            className={
+              selectedIndex === index
+                ? "list-group-item active"
+                : "list-group-item"
+            }
             // just handleClick instead handleClick()
             // just pass reference
-            onClick={handleClick}
+            onClick={() => setSelectedIndex(index)}
           >
             {item}
           </li>
