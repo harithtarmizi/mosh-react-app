@@ -4,10 +4,11 @@ import { useState } from "react";
 interface Props {
   items: string[];
   heading: string;
+  onSelectItem: (item: string) => void;
 }
 
 // destructure props: Props into { items, heading }: Props
-function ListGroup({ items, heading }: Props) {
+function ListGroup({ items, heading, onSelectItem }: Props) {
   // in JSX, we don't have for loop
   // remember, inside JSX, we can't use if statement, unless have curly brackets
 
@@ -28,7 +29,7 @@ function ListGroup({ items, heading }: Props) {
 
   return (
     <>
-      <h1>List</h1>
+      <h1>{heading}</h1>
       {items.length === 0 && <p>No item found</p>}
       <ul className="list-group">
         {items.map((item, index) => (
@@ -41,7 +42,10 @@ function ListGroup({ items, heading }: Props) {
             }
             // just handleClick instead handleClick()
             // just pass reference
-            onClick={() => setSelectedIndex(index)}
+            onClick={() => {
+              setSelectedIndex(index);
+              onSelectItem(item);
+            }}
           >
             {item}
           </li>
