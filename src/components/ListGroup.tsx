@@ -1,9 +1,13 @@
 import { useState } from "react";
 
-function ListGroup() {
-  let items = ["New York", "San Francisco", "Tokyo", "London", "Paris"];
-  // items = [];
+// {items: [], heading: string}
+interface Props {
+  items: string[];
+  heading: string;
+}
 
+// destructure props: Props into { items, heading }: Props
+function ListGroup({ items, heading }: Props) {
   // in JSX, we don't have for loop
   // remember, inside JSX, we can't use if statement, unless have curly brackets
 
