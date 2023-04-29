@@ -15,6 +15,10 @@ function State() {
     address: { city: "San Francisco", zipCode: 94111 },
   });
   const [tags, setTags] = useState(["happy", "cheerful"]);
+  const [bugs, setBugs] = useState([
+    { id: 1, title: "Bug 1", fixed: false },
+    { id: 2, title: "Bug 2", fixed: false },
+  ]);
 
   const handleClick = () => {
     setDrink({ ...drink, price: 6 });
@@ -32,6 +36,9 @@ function State() {
 
     // Update
     setTags(tags.map((tag) => (tag === "happy" ? "happiness" : tag)));
+
+    // no need brand new copy, only object that need to be modified
+    setBugs(bugs.map((bug) => (bug.id === 1 ? { ...bug, fixed: true } : bug)));
   };
 
   return (
