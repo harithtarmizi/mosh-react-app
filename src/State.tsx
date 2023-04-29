@@ -1,4 +1,5 @@
 import { useState } from "react";
+import produce from "immer";
 
 function State() {
   // const [firstName, setFirstName] = useState("");
@@ -38,12 +39,25 @@ function State() {
     setTags(tags.map((tag) => (tag === "happy" ? "happiness" : tag)));
 
     // no need brand new copy, only object that need to be modified
-    setBugs(bugs.map((bug) => (bug.id === 1 ? { ...bug, fixed: true } : bug)));
+    // setBugs(bugs.map((bug) => (bug.id === 1 ? { ...bug, fixed: true } : bug)));
+
+    // use Immer
+    setBugs(
+      produce((draft) => {
+        const bug = draft.find((bug) => bug.id === 1);
+        if (bug) bug.fixed = true;
+      })
+    );
   };
 
   return (
     <div>
-      {drink.price}
+      {/* {drink.price} */}
+      {bugs.map((bug) => (
+        <p key={bug.id}>
+          {bug.title} {bug.fixed ? "Fixed" : "New"}
+        </p>
+      ))}
       <button onClick={handleClick}>Click me</button>
     </div>
   );
