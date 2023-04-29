@@ -2,6 +2,7 @@ import { useState } from "react";
 import Alert from "./components/Alert";
 import Button from "./components/Button/Button";
 import { BsFillCalendarFill } from "react-icons/bs";
+import Like from "./components/Like";
 
 function App() {
   const [alertVisible, setAlertVisible] = useState(false);
@@ -13,6 +14,7 @@ function App() {
       )}
       <Button onClick={() => setAlertVisible(true)}>My Button</Button>
       <BsFillCalendarFill color="red" size="40" />
+      <Like onClick={() => console.log("Clicked!")} />
     </div>
   );
 }
