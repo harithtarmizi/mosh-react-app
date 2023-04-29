@@ -12,7 +12,7 @@ const Button = ({ children, color = "primary", onClick }: Props) => {
       type="button"
       // example to use two classes in one className
       // recommended to naming the class to camelCase
-      className={[styles.btn, styles["btn-" + color]].join(" ")}
+      className={[styles.btn, styles[`btn-${color}`]].join(" ")}
       onClick={onClick}
     >
       {children}

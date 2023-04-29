@@ -11,9 +11,7 @@ function App() {
       {alertVisible && (
         <Alert onClose={() => setAlertVisible(false)}>My Alert</Alert>
       )}
-      <Button color="secondary" onClick={() => setAlertVisible(true)}>
-        My Button
-      </Button>
+      <Button onClick={() => setAlertVisible(true)}>My Button</Button>
       <BsFillCalendarFill color="red" size="40" />
     </div>
   );
