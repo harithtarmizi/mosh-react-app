@@ -10,9 +10,18 @@ function State() {
   //   lastName: "",
   // });
   const [drink, setDrink] = useState({ title: "Americano", price: 5 });
+  const [customer, setCustomer] = useState({
+    name: "John",
+    address: { city: "San Francisco", zipCode: 94111 },
+  });
 
   const handleClick = () => {
     setDrink({ ...drink, price: 6 });
+    // this is how to update nested objects
+    setCustomer({
+      ...customer,
+      address: { ...customer.address, zipCode: 123456 },
+    });
   };
 
   return (
