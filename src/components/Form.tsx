@@ -1,6 +1,11 @@
 import { FormEvent, useRef, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 
+interface FormData {
+  name: string;
+  age: number;
+}
+
 const Form = () => {
   // we want to referencing a HTML input element
   // why pull initial value null, because DOM will have after render
@@ -8,7 +13,11 @@ const Form = () => {
   // const ageRef = useRef<HTMLInputElement>(null);
   // const person = { name: "", age: 0 };
 
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
 
   const [person, setPerson] = useState({
     name: "",
@@ -36,8 +45,14 @@ const Form = () => {
           className="form-control"
           // value={person.name}
           // onChange={(e) => setPerson({ ...person, name: e.target.value })}
-          {...register("name")}
+          {...register("name", { required: true, minLength: 3 })}
         />
+        {errors.name?.type === "required" && (
+          <p className="text-danger">The name field is required.</p>
+        )}
+        {errors.name?.type === "minLength" && (
+          <p className="text-danger">The name must be at least 3 characters.</p>
+        )}
       </div>
       <div className="mb-3">
         <label htmlFor="age" className="form-label">
