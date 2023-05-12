@@ -10,10 +10,10 @@ import FormPage from "./FormPage";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    {/* <App /> */}
+    <App />
     {/* <State /> */}
     {/* <ShoppingCart /> */}
     {/* <UpdateStateEx /> */}
-    <FormPage />
+    {/* <FormPage /> */}
   </React.StrictMode>
 );
