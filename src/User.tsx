@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
-import apiClient, { CanceledError } from "./services/api-client";
-
-interface UserProps {
-  id: number;
-  name: string;
-}
+import { CanceledError } from "./services/api-client";
+import userService, { UserProps } from "./services/user-service";
 
 const User = () => {
   const [users, setUsers] = useState<UserProps[]>([]);
@@ -12,30 +8,27 @@ const User = () => {
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
-    const controller = new AbortController();
-
     setLoading(true);
-    apiClient
-      .get<UserProps[]>("/users", {
-        signal: controller.signal,
-      })
+    const { request, cancel } = userService.getAllUsers();
+    request
       .then((res) => {
         setUsers(res.data);
         setLoading(false);
       })
       .catch((err) => {
+        if (err instanceof CanceledError) return;
         setError(err.message);
         setLoading(false);
       });
 
-    return () => controller.abort();
+    return () => cancel();
   }, []);
 
   const deleteUser = (user: UserProps) => {
     const originalUser = [...users];
     setUsers(users.filter((u) => u.id !== user.id));
 
-    apiClient.delete("/users/" + user.id).catch((err) => {
+    userService.deleteUser(user.id).catch((err) => {
       console.log(err);
       setUsers(originalUser);
     });
@@ -46,8 +39,8 @@ const User = () => {
     const newUser = { id: 0, name: "Mosh" };
     setUsers([newUser, ...users]);
 
-    apiClient
-      .post("/users", newUser)
+    userService
+      .createUser(newUser)
       .then(({ data: savedUser }) => setUsers([savedUser, ...users]))
       .catch((err) => {
         setError(err.message);
@@ -60,7 +53,7 @@ const User = () => {
     const updatedUser = { ...user, name: user.name + "!" };
     setUsers(users.map((u) => (u.id === user.id ? updatedUser : u)));
 
-    apiClient.patch("/users/" + user.id, updatedUser).catch((err) => {
+    userService.updateUser(updatedUser).catch((err) => {
       console.log(err);
       setUsers(originalUser);
     });
