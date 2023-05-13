@@ -8,6 +8,7 @@ import ShoppingCart from "./ShoppingCart";
 import UpdateStateEx from "./UpdateStateEx";
 import FormPage from "./FormPage";
 import LearnHookEffect from "./effect-lesson";
+import App2 from "./App2";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -16,6 +17,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     {/* <ShoppingCart /> */}
     {/* <UpdateStateEx /> */}
     {/* <FormPage /> */}
-    <LearnHookEffect />
+    {/* <LearnHookEffect /> */}
+    <App2 />
   </React.StrictMode>
 );
