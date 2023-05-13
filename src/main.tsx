@@ -7,13 +7,15 @@ import State from "./State";
 import ShoppingCart from "./ShoppingCart";
 import UpdateStateEx from "./UpdateStateEx";
 import FormPage from "./FormPage";
+import LearnHookEffect from "./effect-lesson";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
     {/* <State /> */}
     {/* <ShoppingCart /> */}
     {/* <UpdateStateEx /> */}
     {/* <FormPage /> */}
+    <LearnHookEffect />
   </React.StrictMode>
 );
