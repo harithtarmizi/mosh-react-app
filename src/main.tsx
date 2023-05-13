@@ -9,6 +9,7 @@ import UpdateStateEx from "./UpdateStateEx";
 import FormPage from "./FormPage";
 import LearnHookEffect from "./effect-lesson";
 import App2 from "./App2";
+import User from "./User";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
@@ -18,6 +19,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     {/* <UpdateStateEx /> */}
     {/* <FormPage /> */}
     {/* <LearnHookEffect /> */}
-    <App2 />
+    {/* <App2 /> */}
+    <User />
   </React.StrictMode>
 );
