@@ -1,18 +1,29 @@
 import { useState } from "react";
 import ExpenseList from "./expense-tracker/components/ExpenseList";
+import ExpenseFilter from "./expense-tracker/components/ExpenseFilter";
 
 function App() {
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [expenses, setExpenses] = useState([
-    { id: 1, description: "Ball", amount: 10, category: "Sport" },
-    { id: 2, description: "Mug", amount: 5, category: "Kitchen" },
-    { id: 3, description: "Socks", amount: 8, category: "Attire" },
-    { id: 4, description: "Maggie", amount: 3, category: "Food" },
+    { id: 1, description: "Socket", amount: 3, category: "Utilities" },
+    { id: 2, description: "Airpod", amount: 79, category: "Entertainment" },
+    { id: 3, description: "Bulb", amount: 5, category: "Utilities" },
+    { id: 4, description: "Strawberry", amount: 10, category: "Groceries" },
   ]);
+
+  const visibleCategory = selectedCategory
+    ? expenses.filter((e) => e.category === selectedCategory)
+    : expenses;
 
   return (
     <div>
+      <div className="mb-3">
+        <ExpenseFilter
+          onSelectCategory={(category) => setSelectedCategory(category)}
+        />
+      </div>
       <ExpenseList
-        expenses={expenses}
+        expenses={visibleCategory}
         // we set onDelete to arrow function that take id
         // call setExpenses, get all expenses except the one with given id
         // any argument with id === id will be excluded from array of expense
