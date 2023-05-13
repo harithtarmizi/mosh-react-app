@@ -18,6 +18,17 @@ const App2 = () => {
     return () => disconnect()
   })
 
+  // example
+  useEffect(() => {
+    // Component did mount
+    // Set up some resource
+  
+    return () => {
+      // Component will unmount
+      // Clean up the resource
+    }
+  }, [])
+
   return (
     <div>
       <select
